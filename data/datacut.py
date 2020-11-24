@@ -30,10 +30,36 @@ def main():
         type=int
     )
 
+
+    DEFAULT_TARGET=1
+    parser.add_argument(
+        '-t',
+        '--target',
+        help='how far ahead in the future the label is determined from',
+        default=DEFAULT_TARGET
+    )
+
     args = parser.parse_args()
-    print(args)
 
     return
+
+def create_design_matrix(input_dir, output_file, window, target):
+    """ returns a design matrix built from raw data """
+
+    ## Pseudo-code
+    # define result set
+    result = []
+
+    # get the list of csv files containing the data
+    files = filenames(input)
+
+    # for each files
+    for f in files:
+        subset_result = process_file(f, window, target)
+        result += subset_result
+
+
+
 
 if __name__ == '__main__':
     main()
