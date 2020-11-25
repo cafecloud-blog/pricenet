@@ -2,6 +2,7 @@
 """ creates data sets for pricenet traiing """
 
 import argparse
+import glob
 
 def main():
 
@@ -17,7 +18,7 @@ def main():
     parser.add_argument(
         '-o',
         '--output',
-        help='name of the output file that will contain the dataset',
+        help='name of the directory where training examples will be saved',
         required=True
     )
 
@@ -39,26 +40,19 @@ def main():
         default=DEFAULT_TARGET
     )
 
+    parser.add_argument(
+        '-k',
+        '--keep-shorter',
+        action='store_true',
+        default=True
+    )
+
     args = parser.parse_args()
 
     return
 
-def create_design_matrix(input_dir, output_file, window, target):
-    """ returns a design matrix built from raw data """
-
-    ## Pseudo-code
-    # define result set
-    result = []
-
-    # get the list of csv files containing the data
-    files = filenames(input)
-
-    # for each files
-    for f in files:
-        subset_result = process_file(f, window, target)
-        result += subset_result
-
-
+def create_training_examples(input_dir, out_dir, window, target):
+    """ creates the training examples from """
 
 
 if __name__ == '__main__':
